@@ -11,7 +11,7 @@ npm install axios
 ```
 
 ```js
-<script src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 ```
 
 #### First Request
@@ -30,26 +30,26 @@ npm install axios
 - error in error.response
 
 ```js
-import axios from 'axios';
+import axios from 'axios'
 
 const fetchData = async () => {
   try {
     // axios.get(), axios.post(),axios.put(), axios.delete()
-    const response = await axios(url);
+    const response = await axios(url)
 
-    console.log(response);
+    console.log(response)
   } catch (error) {
-    console.log(error.response);
+    console.log(error.response)
   }
-};
+}
 ```
 
 #### Headers
 
-- second argument
+- For a get request we'll put headers in the second argument
 - axios.get(url,{})
 
-- third argument in requests with data
+- For a post request we'll put headers in the third argument in requests with data
 - axios.post(url,{data},{})
 
 ```js
@@ -57,15 +57,15 @@ const fetchDadJoke = async () => {
   try {
     const { data } = await axios(url, {
       headers: {
-        Accept: 'application/json',
-      },
-    });
+        Accept: 'application/json'
+      }
+    })
     // console.log(data);
-    setJoke(data.joke);
+    setJoke(data.joke)
   } catch (error) {
-    console.log(error.response);
+    console.log(error.response)
   }
-};
+}
 ```
 
 #### Post Request
@@ -76,9 +76,9 @@ const fetchDadJoke = async () => {
 
 ```js
 try {
-  const resp = await axios.post(url, { data });
+  const resp = await axios.post(url, { data })
 } catch (error) {
-  console.log(error.response.data);
+  console.log(error.response.data)
 }
 ```
 
@@ -87,16 +87,15 @@ try {
 ```js
 // In latest axios version common property returns "undefined"
 // axios.defaults.headers.common['Accept'] = 'application/json';
-axios.defaults.headers['Accept'] = 'application/json';
+axios.defaults.headers['Accept'] = 'application/json'
 
-axios.defaults.baseURL = 'https://api.example.com';
+axios.defaults.baseURL = 'https://api.example.com'
 
 // In latest axios version common property returns "undefined"
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-axios.defaults.headers['Authorization'] = AUTH_TOKEN;
+axios.defaults.headers['Authorization'] = AUTH_TOKEN
 
-axios.defaults.headers.post['Content-Type'] =
-  'application/x-www-form-urlencoded';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 ```
 
 #### Custom Instance
@@ -105,9 +104,9 @@ axios.defaults.headers.post['Content-Type'] =
 const authFetch = axios.create({
   baseURL: 'https://www.course-api.com',
   headers: {
-    Accept: 'application/json',
-  },
-});
+    Accept: 'application/json'
+  }
+})
 ```
 
 #### Interceptors
@@ -116,33 +115,33 @@ const authFetch = axios.create({
 
 ```js
 authFetch.interceptors.request.use(
-  (request) => {
+  request => {
     // request.headers.common['Accept'] = `application/json`;
-    request.headers['Accept'] = `application/json`;
+    request.headers['Accept'] = `application/json`
 
-    console.log('request sent');
+    console.log('request sent')
     // must return request
-    return request;
+    return request
   },
-  (error) => {
-    return Promise.reject(error);
+  error => {
+    return Promise.reject(error)
   }
-);
+)
 
 authFetch.interceptors.response.use(
-  (response) => {
-    console.log('got response');
-    return response;
+  response => {
+    console.log('got response')
+    return response
   },
-  (error) => {
-    console.log(error.response);
+  error => {
+    console.log(error.response)
     if (error.response.status === 404) {
       // do something
-      console.log('NOT FOUND');
+      console.log('NOT FOUND')
     }
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-);
+)
 ```
 
 ##### Update
@@ -152,14 +151,14 @@ In the latest version there is no common property
 ```js
 // In latest axios version common property returns "undefined"
 // axios.defaults.headers.common['Accept'] = 'application/json';
-axios.defaults.headers['Accept'] = 'application/json';
+axios.defaults.headers['Accept'] = 'application/json'
 
 // In latest axios version common property returns "undefined"
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-axios.defaults.headers['Authorization'] = AUTH_TOKEN;
+axios.defaults.headers['Authorization'] = AUTH_TOKEN
 ```
 
 ```js
 // request.headers.common['Accept'] = `application/json`;
-request.headers['Accept'] = `application/json`;
+request.headers['Accept'] = `application/json`
 ```
