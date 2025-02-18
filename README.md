@@ -113,6 +113,8 @@ const authFetch = axios.create({
 
 - global and custom
 
+- We can use interceptors either on global instance or on the custom instance. Let's use it on a custom instance in this example.
+
 ```js
 authFetch.interceptors.request.use(
   request => {
